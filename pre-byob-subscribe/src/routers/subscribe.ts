@@ -18,6 +18,14 @@ router.post(
     try {
       const { email } = req.body;
 
+      // 이메일 중복 처리
+      const existing = db.subscribers.getByEmail(email);
+      if (existing) {
+        return res.status(400).json({
+          message: "이미 구독한 이메일입니다.",
+        });
+      }
+
       // 메일 인증용 JWT
       const token = verifyToken.generate(email);
       log(`${req.path} - 메일 인증용 JWT: ${token}`);
@@ -33,7 +41,7 @@ router.post(
       log(`${req.path} - 인증 요청 메일 전송: ${email}`);
 
       return res.json({
-        message: "전송!",
+        message: "인증 메일이 전송되었습니다!",
       });
     } catch (ex) {
       log(`${req.path} - 에러: ${ex}`, "ERROR");

@@ -17,6 +17,11 @@ const db = {
         .prepare("INSERT INTO Subscribers (email) VALUES (@email)")
         .run(subscriber);
     },
+    getByEmail(email: string) {
+      return connection
+        .prepare("SELECT * FROM Subscribers WHERE email = @email")
+        .get({ email }) as Subscriber;
+    },
     getAll() {
       return connection
         .prepare("SELECT * FROM Subscribers")
