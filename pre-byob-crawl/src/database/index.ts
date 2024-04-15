@@ -1,3 +1,4 @@
+import config from "../lib/config";
 import connection from "./connection";
 import createSchema from "./createSchema";
 
@@ -21,7 +22,7 @@ export interface Item {
 }
 
 createSchema({
-  drop: true,
+  drop: config.DB_REFRESH,
 });
 
 const db = {

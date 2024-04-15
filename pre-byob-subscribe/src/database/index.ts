@@ -1,3 +1,4 @@
+import config from "../lib/config";
 import connection from "./connection";
 import createSchema from "./createSchema";
 
@@ -6,7 +7,7 @@ export interface Subscriber {
 }
 
 createSchema({
-  drop: false,
+  drop: config.DB_REFRESH,
 });
 
 const db = {
