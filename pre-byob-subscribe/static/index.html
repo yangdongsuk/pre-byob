@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <title>압류 주류 알리미</title>
+</head>
+
+<body>
+    <main>
+        <div class="heading">
+            <h1>구독</h1>
+            <span>제출하신 이메일로 인증 링크가 발송됩니다.</span>
+        </div>
+        <form id="verifyRequestForm">
+            <input name="email" type="email" placeholder="example@gmail.com" required>
+            <button type="submit">신청</button>
+        </form>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const elements = {
+                emailInput: document.querySelector('input[name="email"]')
+            };
+
+            document.querySelector('#verifyRequestForm').addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const data = {
+                    email: elements.emailInput.value
+                };
+
+                const response = await fetch('/subscribe/request', {
+                    method: 'post',
+                    body: JSON.stringify(data),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                console.log(response);
+
+                alert("전송되었습니다!");
+                elements.emailInput.value = '';
+            });
+        });
+    </script>
+</body>
+
+</html>

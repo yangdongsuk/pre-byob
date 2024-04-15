@@ -1,0 +1,27 @@
+{
+  "name": "pre-byob-crawl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rimraf dist && npx tsc",
+    "start": "node ./dist/index.js",
+    "start:build": "npm run build && npm start",
+    "register": ""
+  },
+  "keywords": [],
+  "author": "Bisue",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^9.5.0",
+    "cheerio": "^1.0.0-rc.12",
+    "nodemailer": "^6.9.13"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.9",
+    "@types/node": "^20.12.7",
+    "@types/nodemailer": "^6.4.14",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.5"
+  }
+}
