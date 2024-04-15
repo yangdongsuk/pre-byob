@@ -10,14 +10,16 @@ async function main() {
     return;
   }
 
-  const html = newItems
-    .map(
-      (item) =>
-        `글 번호: ${item.articleNo} / 공매 번호: ${item.no}<br>
+  const html =
+    "[TODO]: 이메일 템플릿 사용<br><br>" +
+    newItems
+      .map(
+        (item) =>
+          `글 번호: ${item.articleNo} / 공매 번호: ${item.no}<br>
         ${item.name}<br>
         ${item.price.toLocaleString()} 원 / ${item.amount} 개`
-    )
-    .join("<br><br>");
+      )
+      .join("<br><br>");
 
   const targets = db.subscribers.getAll();
   targets.forEach(({ email }) => {
