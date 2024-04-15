@@ -36,8 +36,8 @@ router.post(
         subject: "[주류 공매 알림] 메일 인증",
         html:
           "[TODO]: 이메일 템플릿 사용<br><br>" +
-          `메일 인증을 완료해주세요!
-          <a href="${config.BASE_URL}/subscribe/verify/${token}" style="padding: 0.5rem 1rem; border-radius: 5px; background-color: #0ea5e9; colors: #ffffff; text-decoration: none;">메일 인증</a>`,
+          `메일 인증을 완료해주세요!<br>
+          <a href="${config.BASE_URL}/subscribe/verify/${token}" style="display:inline-block; padding: 0.5rem 1rem; border-radius: 5px; background-color: #0ea5e9; color: #ffffff; text-decoration: none;">메일 인증</a>`,
       });
       log(`${req.path} - 인증 요청 메일 전송: ${email}`);
 
