@@ -4,6 +4,7 @@ import mailer from "../lib/mailer";
 import verifyToken from "../lib/verifyToken";
 import db from "../database";
 import { log } from "../lib/log";
+import config from "../lib/config";
 
 interface RegisterRequestBody {
   email: string;
@@ -26,7 +27,7 @@ router.post(
         to: email,
         subject: "인증 테스트 메일임",
         html: `
-      <a href="http://localhost:3001/subscribe/verify/${token}">메일 인증</a>
+      <a href="${config.BASE_URL}/subscribe/verify/${token}">메일 인증</a>
       `,
       });
       log(`${req.path} - 인증 요청 메일 전송: ${email}`);
