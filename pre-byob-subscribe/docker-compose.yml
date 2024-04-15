@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  subscribe:
+    build: .
+    restart: unless-stopped
+    ports:
+      - 3001:3001
+    networks:
+      - subscribe
+networks:
+  subscribe:
