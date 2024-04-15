@@ -17,10 +17,13 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #1e3a8a;
+  padding: 1rem;
 }
 
 main {
   padding: 2rem;
+  width: 100%;
+  max-width: 25rem;
   border-radius: 15px;
   background-color: #ffffff;
   color: #000000;
@@ -42,8 +45,6 @@ form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: 100vw;
-  max-width: 20rem;
   margin-top: 1rem;
 }
 
