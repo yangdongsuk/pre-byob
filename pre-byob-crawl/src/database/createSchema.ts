@@ -34,7 +34,7 @@ const createSchema = ({ drop }: { drop: boolean }) => {
     CREATE TABLE IF NOT EXISTS Items (
         id INTEGER PRIMARY KEY,
         imageSrc TEXT NOT NULL,
-        number TEXT NOT NULL UNIQUE,
+        no TEXT NOT NULL UNIQUE,
         name TEXT NOT NULL,
         price TEXT NOT NULL
     )

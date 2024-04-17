@@ -60,6 +60,11 @@ const db = {
     getAll() {
       return connection.prepare("SELECT * FROM Items").all() as Item[];
     },
+    updatePrice(no: string, newPrice: string) {
+      return connection
+        .prepare("UPDATE Items SET price = ? WHERE no = ?")
+        .run(newPrice, no);
+    },
   },
 };
 
