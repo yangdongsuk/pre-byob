@@ -1,12 +1,17 @@
 import connection from "./connection";
-
 const createSchema = ({ drop }: { drop: boolean }) => {
   if (drop) {
-    // connection.exec(`DROP TABLE IF EXISTS Subscribers;`);
+    console.log("Dropping Tables if they exist.");
+    console.log("Executing: DROP TABLE IF EXISTS Subscribers;");
+    connection.exec(`DROP TABLE IF EXISTS Subscribers;`);
+    console.log("Executing: DROP TABLE IF EXISTS Articles;");
     connection.exec(`DROP TABLE IF EXISTS Articles;`);
+    console.log("Executing: DROP TABLE IF EXISTS Items;");
     connection.exec(`DROP TABLE IF EXISTS Items;`);
   }
 
+  console.log("Creating Tables.");
+  console.log("Executing: CREATE TABLE IF NOT EXISTS Subscribers ...");
   connection.exec(`
     CREATE TABLE IF NOT EXISTS Subscribers (
         id INTEGER PRIMARY KEY,
@@ -14,6 +19,7 @@ const createSchema = ({ drop }: { drop: boolean }) => {
         type TEXT
     )`);
 
+  console.log("Executing: CREATE TABLE IF NOT EXISTS Articles ...");
   connection.exec(`
     CREATE TABLE IF NOT EXISTS Articles (
         id INTEGER PRIMARY KEY,
@@ -23,14 +29,14 @@ const createSchema = ({ drop }: { drop: boolean }) => {
         date TEXT NOT NULL
     )`);
 
+  console.log("Executing: CREATE TABLE IF NOT EXISTS Items ...");
   connection.exec(`
     CREATE TABLE IF NOT EXISTS Items (
         id INTEGER PRIMARY KEY,
-        articleNo INTEGER NOT NULL,
-        no TEXT NOT NULL UNIQUE,
-        price INTEGER NOT NULL,
+        imageSrc TEXT NOT NULL,
+        number TEXT NOT NULL UNIQUE,
         name TEXT NOT NULL,
-        amount INTEGER NOT NULL
+        price TEXT NOT NULL
     )
   `);
 };

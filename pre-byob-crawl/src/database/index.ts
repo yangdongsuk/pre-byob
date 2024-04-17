@@ -14,11 +14,10 @@ export interface Article {
 }
 
 export interface Item {
-  articleNo: number;
+  imageSrc: string;
   no: string;
-  price: number;
   name: string;
-  amount: number;
+  price: string;
 }
 
 createSchema({
@@ -54,12 +53,12 @@ const db = {
     insert(item: Item) {
       return connection
         .prepare(
-          "INSERT INTO Items (articleNo, no, price, name, amount) VALUES (@articleNo, @no, @price, @name, @amount)"
+          "INSERT INTO Items (imageSrc, no, name, price) VALUES (@imageSrc, @no, @name, @price)"
         )
         .run(item);
     },
     getAll() {
-      return connection.prepare("SELECT * FROM Articles").all() as Item[];
+      return connection.prepare("SELECT * FROM Items").all() as Item[];
     },
   },
 };

@@ -1,23 +1,29 @@
+import run from "./crawl/index";
 import db from "./database";
-import crawl from "./crawl";
-import mailer from "./lib/mailer";
 import { log } from "./lib/log";
-
+import mailer from "./lib/mailer";
 async function main() {
-  const newItems = await crawl.run();
+  const newItems = await run();
 
   if (newItems.length === 0) {
+    log("[crawler] No new items found", "INFO");
     return;
   }
 
+  const baseUri = "https://www.utong.or.kr/Shop/Shop/View.asp?S_NUM=";
   const html =
-    "[TODO]: 이메일 템플릿 사용<br><br>" +
+    "새로운 상품 목록:<br><br>" +
     newItems
       .map(
         (item) =>
-          `글 번호: ${item.articleNo} / 공매 번호: ${item.no}<br>
-        ${item.name}<br>
-        ${item.price.toLocaleString()} 원 / ${item.amount} 개`
+          `<img src="${
+            item.imageSrc
+          }" alt="Item Image" style="height:100px;"><br>
+         <a href="${baseUri}${item.no}" target="_blank">공매 번호: ${
+            item.no
+          }(상세 페이지 바로 가기)</a><br>
+         상품명: ${item.name}<br>
+         가격: ${parseInt(item.price).toLocaleString()} 원`
       )
       .join("<br><br>");
 
@@ -30,7 +36,7 @@ async function main() {
       } 건`,
       html,
     });
-    log(`[crawler] email sended to ${email}`, "INFO");
+    log(`[crawler] Email sent to ${email}`, "INFO");
   });
 }
 
